@@ -10,20 +10,21 @@
 <body>
     <div class="wrap">
         <header class="header">
-            <span>综合</span>
+            <span class="type">综合</span>
             <span>销量</span>
             <span>视频</span>
             <span id="filterData">筛选</span>
         </header>
         <div class="box">
             <ul>
+                <li>综合</li>
                 <li class="price">价格</li>
-                <li>销量</li>
+                <li>销量</li>                
             </ul>
         </div>
         <main class="main" id="main" >
             <div class="main-load" data-up="上拉加载">
-                <!-- <dl>
+                 <!-- <dl>
                     <dt><img src="imgs/1.png" alt=""></dt>
                     <dd>
                         <p>羽绒服</p>
@@ -111,8 +112,10 @@
         </main>
     </div>
 
-    <script src="./js/libs/jquery-2.1.1.min.js"></script>
+    <!-- <script src="./js/libs/jquery-2.1.1.min.js"></script>
     <script src="./js/libs/bscroll.js"></script>
-    <script src="./js/index.js"></script>
+    <script src="./js/index.js"></script> -->
+
+    <script src="./js/libs/require.js" data-main="./js/newindex.js"></script>
 </body>
 </html>

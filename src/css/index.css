@@ -35,7 +35,7 @@ html, body {
     position: relative; }
     .main .main-load dl {
       width: 48%;
-      height: auto; }
+      height: 280px; }
   .main .main-load:after {
     content: attr(data-up);
     position: absolute;

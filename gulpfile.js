@@ -21,8 +21,24 @@ gulp.task('server',function(){
         middleware:function(req,res,next){
             var pathname = url.parse(req.url).pathname;
 
-            if(pathname == '/api/list'){
-                res.end(JSON.stringify({code:1,data:list}))
+            if(pathname == '/favicon.ico'){
+                res.end('')
+                return;
+            }
+            
+            if(pathname == '/api/list'){ 
+                var pagenum = url.parse(req.url,true).query.pagenum; //第一页
+                var limit = url.parse(req.url,true).query.limit; //每页5条
+                //console.log(pagenum)
+                var total = Math.ceil(list.length/limit) //总共要多少页
+                
+                var start = (pagenum-1)*limit;
+                var end = pagenum * limit;
+
+                var newArr = list.slice(0); //克隆新数组
+                var target = newArr.slice(start,end);
+
+                res.end(JSON.stringify({code:1,data:target,total:total}))
             }else{
                 pathname = pathname =="/" ? "index.html" : pathname;
                 res.end(fs.readFileSync(path.join(__dirname,"src",pathname)));
