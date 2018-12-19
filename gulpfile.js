@@ -1,6 +1,10 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var server = require('gulp-webserver');
+var fs = require('fs');
+var url = require('url');
+var path = require('path');
+var list = require("./mock/data.json");
 
 gulp.task('sass',function(){
     return gulp.src('./src/scss/*.scss')
@@ -15,8 +19,14 @@ gulp.task('server',function(){
     .pipe(server({
         port:9700,
         middleware:function(req,res,next){
-            //var pathname = 
+            var pathname = url.parse(req.url).pathname;
 
+            if(pathname == '/api/list'){
+                res.end(JSON.stringify({code:1,data:list}))
+            }else{
+                pathname = pathname =="/" ? "index.html" : pathname;
+                res.end(fs.readFileSync(path.join(__dirname,"src",pathname)));
+            }
         }
     }))
 })
